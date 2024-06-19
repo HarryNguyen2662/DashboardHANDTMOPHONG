@@ -107,9 +107,9 @@ class _WebNavWidgetState extends State<WebNavWidget> {
                   children: [
                     if (Theme.of(context).brightness == Brightness.light)
                       Image.asset(
-                        'assets/images/logo_newforceLight_alt@3x.png',
-                        width: 170.0,
-                        height: 60.0,
+                        'assets/images/logo.png',
+                        width: 150.0,
+                        height: 100.0,
                         fit: BoxFit.fitWidth,
                       ),
                     if (Theme.of(context).brightness == Brightness.dark)
