@@ -1,3 +1,7 @@
+import 'package:dashboardmophong2/backend/supabase/database/database.dart';
+import 'package:dashboardmophong2/components/addingcard2/addingcard2_widget.dart';
+import 'package:dashboardmophong2/flutter_flow/flutter_flow_widgets.dart';
+
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'package:auto_size_text/auto_size_text.dart';
@@ -13,14 +17,18 @@ class GiaovienCardWidget extends StatefulWidget {
   final String magiaovien;
   final String sdt;
   final String matrungtam;
-  final bool kichhoat;
-  const GiaovienCardWidget(
-      {super.key,
-      required this.tengiaovien,
-      required this.magiaovien,
-      required this.sdt,
-      required this.matrungtam,
-      required this.kichhoat});
+  final String ghichu;
+  final Function() reloadlist;
+
+  const GiaovienCardWidget({
+    super.key,
+    required this.tengiaovien,
+    required this.magiaovien,
+    required this.sdt,
+    required this.matrungtam,
+    required this.reloadlist,
+    required this.ghichu,
+  });
 
   @override
   State<GiaovienCardWidget> createState() => _GiaovienCardWidgetState();
@@ -29,8 +37,19 @@ class GiaovienCardWidget extends StatefulWidget {
 class _GiaovienCardWidgetState extends State<GiaovienCardWidget> {
   late GiaovienCardModel _model;
 
+  get tengiaovien => widget.tengiaovien;
+  get magiaovien => widget.magiaovien;
+  get sdt => widget.sdt;
+  get matrungtam => widget.matrungtam;
+  get ghichu => widget.ghichu;
+
   @override
   void setState(VoidCallback callback) {
+    _model.tengiaovien = tengiaovien;
+    _model.magiaovien = magiaovien;
+    _model.matrungtam = matrungtam;
+    _model.sdt = sdt;
+    _model.ghichu = ghichu;
     super.setState(callback);
     _model.onUpdate();
   }
@@ -39,14 +58,17 @@ class _GiaovienCardWidgetState extends State<GiaovienCardWidget> {
   void initState() {
     super.initState();
     _model = createModel(context, () => GiaovienCardModel());
-
+    _model.tengiaovien = tengiaovien;
+    _model.magiaovien = magiaovien;
+    _model.matrungtam = matrungtam;
+    _model.sdt = sdt;
+    _model.ghichu = ghichu;
     WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override
   void dispose() {
     _model.maybeDispose();
-
     super.dispose();
   }
 
@@ -190,53 +212,82 @@ class _GiaovienCardWidgetState extends State<GiaovienCardWidget> {
                         ),
                   ),
                 ),
-              Expanded(
-                child: Column(
-                  mainAxisSize: MainAxisSize.max,
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.end,
-                  children: [
-                    Text(
-                      /*FFLocalizations.of(context).getText(
-                        'qvvzraxe' /* Status */,
-                      ),*/
-                      true ? "Kích hoạt" : "Chưa kích hoạt",
-                      style: FlutterFlowTheme.of(context).bodyMedium.override(
-                            fontFamily:
-                                FlutterFlowTheme.of(context).bodyMediumFamily,
-                            color: FlutterFlowTheme.of(context).primary,
-                            letterSpacing: 0,
-                            useGoogleFonts: GoogleFonts.asMap().containsKey(
-                                FlutterFlowTheme.of(context).bodyMediumFamily),
-                          ),
-                    ),
-                    if (responsiveVisibility(
+              Flexible(
+                child: FFButtonWidget(
+                  onPressed: () {
+                    print("Xem và chỉnh sửa");
+                    showDialog(
                       context: context,
-                      tablet: false,
-                      tabletLandscape: false,
-                      desktop: false,
-                    ))
-                      Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(0, 2, 0, 0),
-                        child: Text(
-                          dateTimeFormat(
-                            'relative',
-                            getCurrentTimestamp,
-                            locale: FFLocalizations.of(context).languageCode,
+                      builder: (BuildContext context) {
+                        return AlertDialog(
+                          title: Text(
+                            'Thêm học viên',
+                            style: FlutterFlowTheme.of(context)
+                                .bodyMedium
+                                .override(
+                                  fontFamily: FlutterFlowTheme.of(context)
+                                      .bodyMediumFamily,
+                                  fontSize: 24,
+                                  letterSpacing: 0,
+                                  useGoogleFonts: GoogleFonts.asMap()
+                                      .containsKey(FlutterFlowTheme.of(context)
+                                          .bodyMediumFamily),
+                                ),
                           ),
-                          style: FlutterFlowTheme.of(context)
-                              .bodyMedium
-                              .override(
-                                fontFamily: FlutterFlowTheme.of(context)
-                                    .bodyMediumFamily,
-                                letterSpacing: 0,
-                                useGoogleFonts: GoogleFonts.asMap().containsKey(
-                                    FlutterFlowTheme.of(context)
-                                        .bodyMediumFamily),
-                              ),
+                          content: SingleChildScrollView(
+                            child: Column(
+                              children: <Widget>[
+                                Addingcard2Widget(
+                                  tengiaovien: tengiaovien,
+                                  magiaovien: magiaovien,
+                                  sodienthoai: sdt,
+                                  matrungtam: matrungtam,
+                                  ghichu: ghichu,
+                                  task: 'update',
+                                  passdownvalue: (tengiaovien, magiaovien,
+                                      sodienthoai, matrungtam, ghichu) async {
+                                    setState(() {
+                                      _model.tengiaovien = tengiaovien;
+                                      _model.magiaovien = magiaovien;
+                                      _model.sdt = sodienthoai;
+                                      _model.matrungtam = matrungtam;
+                                      _model.ghichu = ghichu;
+                                    });
+                                  },
+                                )
+                              ],
+                            ),
+                          ),
+                        );
+                      },
+                    ).then((_) async {
+                      await widget.reloadlist();
+                    });
+                  },
+                  text: /*FFLocalizations.of(context).getText(
+                      'a89x3by5' /* Xem và chỉnh sửa */,
+                    ),*/
+                      "Xem và chỉnh sửa",
+                  options: FFButtonOptions(
+                    height: 40,
+                    padding: EdgeInsetsDirectional.fromSTEB(24, 0, 24, 0),
+                    iconPadding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
+                    color: FlutterFlowTheme.of(context).primary,
+                    textStyle: FlutterFlowTheme.of(context).titleSmall.override(
+                          fontFamily:
+                              FlutterFlowTheme.of(context).titleSmallFamily,
+                          color: Colors.white,
+                          letterSpacing: 0,
+                          useGoogleFonts: GoogleFonts.asMap().containsKey(
+                              FlutterFlowTheme.of(context).titleSmallFamily),
                         ),
-                      ),
-                  ],
+                    elevation: 3,
+                    borderSide: BorderSide(
+                      color: Colors.transparent,
+                      width: 1,
+                    ),
+                    borderRadius: BorderRadius.circular(8),
+                  ),
                 ),
               ),
             ],

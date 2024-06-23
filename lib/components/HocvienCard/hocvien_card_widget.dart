@@ -1,3 +1,5 @@
+import 'package:dashboardmophong2/components/addingcard/addingcard_widget.dart';
+
 import '/flutter_flow/flutter_flow_animations.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
@@ -13,12 +15,14 @@ import 'hocvien_card_model.dart';
 export 'hocvien_card_model.dart';
 
 class HocvienCardWidget extends StatefulWidget {
-  final String tenhocvien;
-  final String mahocvien;
-  final String sdt;
-  final String tengiaovien;
-  final String magiaovien;
-  final bool kichhoat;
+  String tenhocvien;
+  String mahocvien;
+  String sdt;
+  String tengiaovien;
+  String magiaovien;
+  bool kichhoat;
+  final Function() reloadlist;
+
   HocvienCardWidget({
     Key? key,
     required this.tenhocvien,
@@ -27,6 +31,7 @@ class HocvienCardWidget extends StatefulWidget {
     required this.tengiaovien,
     required this.magiaovien,
     required this.kichhoat,
+    required this.reloadlist,
   }) : super(key: key);
 
   @override
@@ -48,6 +53,10 @@ class _HocvienCardWidgetState extends State<HocvienCardWidget>
 
   @override
   void setState(VoidCallback callback) {
+    _model.tenhocvien = tenhocvien;
+    _model.mahocvien = mahocvien;
+    _model.magiaovien = magiaovien;
+    _model.sdt = sdt;
     _model.kichhoat = kichhoat;
     super.setState(callback);
     _model.onUpdate();
@@ -86,14 +95,17 @@ class _HocvienCardWidgetState extends State<HocvienCardWidget>
           !anim.applyInitialState),
       this,
     );
-
+    _model.tenhocvien = tenhocvien;
+    _model.mahocvien = mahocvien;
+    _model.magiaovien = magiaovien;
+    _model.sdt = sdt;
+    _model.kichhoat = kichhoat;
     WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override
   void dispose() {
     _model.maybeDispose();
-
     super.dispose();
   }
 
@@ -106,9 +118,7 @@ class _HocvienCardWidgetState extends State<HocvienCardWidget>
         focusColor: Colors.transparent,
         hoverColor: Colors.transparent,
         highlightColor: Colors.transparent,
-        onTap: () async {
-          context.pushNamed('userDetails');
-        },
+        onTap: () {},
         child: Container(
           width: double.infinity,
           height: 100,
@@ -145,7 +155,7 @@ class _HocvienCardWidgetState extends State<HocvienCardWidget>
                           /*FFLocalizations.of(context).getText(
                             '52hh98f0' /* {ten hoc vien} */,
                           ),*/
-                          "Tên học viên : ${tenhocvien}",
+                          "Tên học viên : ${_model.tenhocvien}",
                           style: FlutterFlowTheme.of(context)
                               .titleMedium
                               .override(
@@ -164,7 +174,7 @@ class _HocvienCardWidgetState extends State<HocvienCardWidget>
                           /*FFLocalizations.of(context).getText(
                             'p5yl8tfa' /* Mã học viên : {ma học viên} */,
                           ),*/
-                          "Mã học viên : ${mahocvien}",
+                          "Mã học viên : ${_model.mahocvien}",
                           style: FlutterFlowTheme.of(context)
                               .bodySmall
                               .override(
@@ -183,7 +193,7 @@ class _HocvienCardWidgetState extends State<HocvienCardWidget>
                           /*FFLocalizations.of(context).getText(
                             '1hwa7z53' /* Số điện thoại : {số điện thoại... */,
                           ),*/
-                          "Số điện thoại : ${sdt}",
+                          "Số điện thoại : ${_model.sdt}",
                           style: FlutterFlowTheme.of(context)
                               .bodySmall
                               .override(
@@ -214,7 +224,7 @@ class _HocvienCardWidgetState extends State<HocvienCardWidget>
                             /*FFLocalizations.of(context).getText(
                               'dh2czehh' /* Tên giáo viên hướng dân : {Tên... */,
                             ),*/
-                            "Tên giáo viên hướng dân : ${tengiaovien}",
+                            "Tên giáo viên hướng dân : ${_model.tengiaovien}",
                             style: FlutterFlowTheme.of(context)
                                 .bodySmall
                                 .override(
@@ -235,7 +245,7 @@ class _HocvienCardWidgetState extends State<HocvienCardWidget>
                             /*FFLocalizations.of(context).getText(
                               'znrb0zl9' /* Mã giáo viên hướng dẫn : {mã g... */,
                             ),*/
-                            "Mã giáo viên hướng dẫn : ${magiaovien}",
+                            "Mã giáo viên hướng dẫn : ${_model.magiaovien}",
                             style: FlutterFlowTheme.of(context)
                                 .bodySmall
                                 .override(
@@ -294,8 +304,59 @@ class _HocvienCardWidgetState extends State<HocvienCardWidget>
                 ),
                 Flexible(
                   child: FFButtonWidget(
-                    onPressed: () {
-                      print('Button pressed ...');
+                    onPressed: () async {
+                      print("Xem và chỉnh sửa");
+                      showDialog(
+                        context: context,
+                        builder: (BuildContext context) {
+                          return AlertDialog(
+                            title: Text(
+                              'Thêm học viên',
+                              style: FlutterFlowTheme.of(context)
+                                  .bodyMedium
+                                  .override(
+                                    fontFamily: FlutterFlowTheme.of(context)
+                                        .bodyMediumFamily,
+                                    fontSize: 24,
+                                    letterSpacing: 0,
+                                    useGoogleFonts: GoogleFonts.asMap()
+                                        .containsKey(
+                                            FlutterFlowTheme.of(context)
+                                                .bodyMediumFamily),
+                                  ),
+                            ),
+                            content: SingleChildScrollView(
+                              child: Column(
+                                children: <Widget>[
+                                  AddingcardWidget(
+                                    tenhocvien: tenhocvien,
+                                    mahocvien: mahocvien,
+                                    magiaovienquanly: magiaovien,
+                                    sodienthoai: sdt,
+                                    kichhoat: kichhoat,
+                                    task: "update",
+                                    passdownvalue: (tenhocvien,
+                                        mahocvien,
+                                        magiaovienquanly,
+                                        sodienthoai,
+                                        kichhoat) async {
+                                      setState(() {
+                                        _model.tenhocvien = tenhocvien;
+                                        _model.mahocvien = mahocvien;
+                                        _model.magiaovien = magiaovienquanly;
+                                        _model.sdt = sodienthoai;
+                                        _model.kichhoat = kichhoat;
+                                      });
+                                    },
+                                  )
+                                ],
+                              ),
+                            ),
+                          );
+                        },
+                      ).then((_) async {
+                        await widget.reloadlist();
+                      });
                     },
                     text: /*FFLocalizations.of(context).getText(
                       'a89x3by5' /* Xem và chỉnh sửa */,

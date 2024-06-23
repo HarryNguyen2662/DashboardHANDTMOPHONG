@@ -1,16 +1,15 @@
-2024/06/19-21:55:55.849 f803 Reusing MANIFEST /private/var/folders/bg/l9859q_s1yq8fzwyl1zs1sdr0000gn/T/flutter_tools.yypBjd/flutter_tools_chrome_device.qwI6q7/Default/shared_proto_db/MANIFEST-000001
-2024/06/19-21:55:55.849 f803 Recovering log #19
-2024/06/19-21:55:55.859 f803 Reusing old log /private/var/folders/bg/l9859q_s1yq8fzwyl1zs1sdr0000gn/T/flutter_tools.yypBjd/flutter_tools_chrome_device.qwI6q7/Default/shared_proto_db/000019.log 
-2024/06/19-21:55:55.859 f803 Delete type=0 #13
-2024/06/19-21:55:55.859 f803 Delete type=0 #7
-2024/06/19-21:55:55.859 f803 Delete type=0 #4
-2024/06/19-21:55:55.859 f803 Delete type=0 #10
-2024/06/19-21:55:55.859 f803 Delete type=0 #16
-2024/06/19-21:55:55.859 f803 Delete type=0 #3
-2024/06/19-21:55:55.859 f803 Delete type=2 #14
-2024/06/19-21:55:55.859 f803 Delete type=2 #17
-2024/06/19-21:55:55.859 f803 Delete type=2 #11
-2024/06/19-21:55:55.859 f803 Delete type=2 #8
-2024/06/19-21:56:10.350 a303 Level-0 table #24: started
-2024/06/19-21:56:10.374 a303 Level-0 table #24: 122731 bytes OK
-2024/06/19-21:56:10.383 a303 Delete type=0 #19
+2024/06/21-23:28:46.834 a503 Reusing MANIFEST /private/var/folders/bg/l9859q_s1yq8fzwyl1zs1sdr0000gn/T/flutter_tools.7rjtfd/flutter_tools_chrome_device.TDWi3C/Default/shared_proto_db/MANIFEST-000001
+2024/06/21-23:28:46.834 a503 Recovering log #26
+2024/06/21-23:28:46.835 a503 Reusing old log /private/var/folders/bg/l9859q_s1yq8fzwyl1zs1sdr0000gn/T/flutter_tools.7rjtfd/flutter_tools_chrome_device.TDWi3C/Default/shared_proto_db/000026.log 
+2024/06/21-23:28:46.835 a503 Delete type=0 #13
+2024/06/21-23:28:46.835 a503 Delete type=0 #7
+2024/06/21-23:28:46.835 a503 Delete type=0 #4
+2024/06/21-23:28:46.835 a503 Delete type=0 #10
+2024/06/21-23:28:46.835 a503 Delete type=0 #16
+2024/06/21-23:28:46.835 a503 Delete type=0 #3
+2024/06/21-23:28:46.835 a503 Delete type=2 #14
+2024/06/21-23:28:46.835 a503 Delete type=2 #17
+2024/06/21-23:28:46.835 a503 Delete type=2 #11
+2024/06/21-23:28:46.835 a503 Delete type=2 #8
+2024/06/21-23:28:46.835 a503 Delete type=0 #19
+2024/06/21-23:28:46.835 a503 Delete type=0 #23

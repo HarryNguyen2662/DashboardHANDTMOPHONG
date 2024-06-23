@@ -1,3 +1,6 @@
+import 'package:dashboardmophong2/auth/supabase_auth/auth_util.dart';
+import 'package:dashboardmophong2/backend/supabase/supabase.dart';
+
 import '/components/command_palette/command_palette_widget.dart';
 import '/components/web_nav/web_nav_widget.dart';
 import '/flutter_flow/flutter_flow_animations.dart';
@@ -13,6 +16,26 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'main_profile_page_model.dart';
 export 'main_profile_page_model.dart';
+
+Future resetPassword({
+  required String currentPassword,
+  required String newPassword,
+  required BuildContext context,
+}) async {
+  final user = await authManager.signInWithEmail(
+    context,
+    currentUserEmail,
+    currentPassword,
+  );
+  if (user == null) {
+    return null;
+  } else {
+    final updateResponse = await SupaFlow.client.auth.updateUser(
+      UserAttributes(password: newPassword),
+    );
+    return updateResponse;
+  }
+}
 
 class MainProfilePageWidget extends StatefulWidget {
   const MainProfilePageWidget({super.key});
@@ -631,11 +654,85 @@ class _MainProfilePageWidgetState extends State<MainProfilePageWidget>
                                         child: Align(
                                           alignment:
                                               AlignmentDirectional(0.9, 0.0),
-                                          child: Icon(
-                                            Icons.arrow_forward_ios,
-                                            color: FlutterFlowTheme.of(context)
-                                                .secondaryText,
-                                            size: 18.0,
+                                          child: InkWell(
+                                            onTap: () {
+                                              showDialog(
+                                                context: context,
+                                                builder: (context) {
+                                                  return AlertDialog(
+                                                    title:
+                                                        Text('Change Password'),
+                                                    content: Form(
+                                                      child: Column(
+                                                        mainAxisSize:
+                                                            MainAxisSize.min,
+                                                        children: [
+                                                          TextFormField(
+                                                            decoration:
+                                                                InputDecoration(
+                                                              labelText:
+                                                                  'Current Password',
+                                                            ),
+                                                            obscureText:
+                                                                true, // Hides the text being edited
+                                                          ),
+                                                          TextFormField(
+                                                            decoration:
+                                                                InputDecoration(
+                                                              labelText:
+                                                                  'New Password',
+                                                            ),
+                                                            obscureText:
+                                                                true, // Hides the text being edited
+                                                          ),
+                                                          TextFormField(
+                                                            decoration:
+                                                                InputDecoration(
+                                                              labelText:
+                                                                  'Re-enter New Password',
+                                                            ),
+                                                            obscureText:
+                                                                true, // Hides the text being edited
+                                                          ),
+                                                        ],
+                                                      ),
+                                                    ),
+                                                    actions: [
+                                                      TextButton(
+                                                        onPressed: () {
+                                                          Navigator.of(context)
+                                                              .pop(); // Close the dialog
+                                                        },
+                                                        child: Text('Cancel'),
+                                                      ),
+                                                      TextButton(
+                                                        onPressed: () {
+                                                          // Handle password change logic here
+                                                          resetPassword(
+                                                            currentPassword:
+                                                                '333333',
+                                                            newPassword:
+                                                                '555555',
+                                                            context: context,
+                                                          );
+                                                          Navigator.of(context)
+                                                              .pop(); // Close the dialog
+                                                        },
+                                                        child: Text(
+                                                            'Change Password'),
+                                                      ),
+                                                    ],
+                                                  );
+                                                },
+                                              );
+                                            },
+                                            child: Icon(
+                                              Icons.arrow_forward_ios,
+                                              color:
+                                                  FlutterFlowTheme.of(context)
+                                                      .secondaryText,
+                                              size: 18.0,
+                                            ),
                                           ),
                                         ),
                                       ),

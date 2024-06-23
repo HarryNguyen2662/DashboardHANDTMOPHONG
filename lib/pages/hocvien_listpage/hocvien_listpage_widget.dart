@@ -17,8 +17,8 @@ import 'package:flutter_animate/flutter_animate.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'package:dashboardmophong2/components/HocvienCard/hocvien_card_widget.dart';
-import 'main_customer_list_model.dart';
-export 'main_customer_list_model.dart';
+import 'hocvien_listpage_model.dart';
+export 'hocvien_listpage_model.dart';
 
 class MainCustomerListWidget extends StatefulWidget {
   const MainCustomerListWidget({super.key});
@@ -277,52 +277,99 @@ class _MainCustomerListWidgetState extends State<MainCustomerListWidget>
           !anim.applyInitialState),
       this,
     );
+    hocVienWidgets.clear();
+    hocVienactiveWidgets.clear();
+    hocVienchuaactiveWidgets.clear();
+    for (var hocVien in Listhocvien) {
+      if (hocVien['kich_hoat'] == true) {
+        hocVienactiveWidgets.add(HocvienCardWidget(
+          key: ValueKey(DateTime.now().millisecondsSinceEpoch),
+          tenhocvien: hocVien['ten_hoc_vien'],
+          mahocvien: hocVien['ma_hoc_vien'],
+          sdt: hocVien['so_dien_thoai'],
+          tengiaovien: hocVien['ten_hoc_vien'],
+          magiaovien: hocVien['ma_giao_vien_quan_ly'],
+          kichhoat: hocVien['kich_hoat'],
+          reloadlist: reloadlist,
+        ));
+      } else if (hocVien['kich_hoat'] == false) {
+        hocVienchuaactiveWidgets.add(HocvienCardWidget(
+          key: ValueKey(DateTime.now().millisecondsSinceEpoch),
+          tenhocvien: hocVien['ten_hoc_vien'],
+          mahocvien: hocVien['ma_hoc_vien'],
+          sdt: hocVien['so_dien_thoai'],
+          tengiaovien: hocVien['ten_hoc_vien'],
+          magiaovien: hocVien['ma_giao_vien_quan_ly'],
+          kichhoat: hocVien['kich_hoat'],
+          reloadlist: reloadlist,
+        ));
+      }
+
+      hocVienWidgets.add(HocvienCardWidget(
+        key: ValueKey(DateTime.now().millisecondsSinceEpoch),
+        tenhocvien: hocVien['ten_hoc_vien'],
+        mahocvien: hocVien['ma_hoc_vien'],
+        sdt: hocVien['so_dien_thoai'],
+        tengiaovien: hocVien['ten_hoc_vien'],
+        magiaovien: hocVien['ma_giao_vien_quan_ly'],
+        kichhoat: hocVien['kich_hoat'],
+        reloadlist: reloadlist,
+      ));
+    }
     WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
-  Future<void> reloadlist() async {
+  Future<dynamic> reloadlist() async {
     trungTamAPI.getTrungTamLISTHS(currentUserId).then((value) {
       setState(() {
+        print("hello hello hello hello hello ${Listgiaovien.length}");
+        hocVienWidgets.clear();
+        hocVienactiveWidgets.clear();
+        hocVienchuaactiveWidgets.clear();
         Listhocvien = value;
         hocVienWidgets = Listhocvien.map((hocVien) {
           return HocvienCardWidget(
             key: ValueKey(DateTime.now().millisecondsSinceEpoch),
-            tenhocvien: hocVien['tenhocvien'],
-            mahocvien: hocVien['mahocvien'],
-            sdt: hocVien['sodienthoai'],
-            tengiaovien: hocVien['tenhocvien'],
-            magiaovien: hocVien['magiaovienquanly'],
-            kichhoat: hocVien['kichhoat'],
+            tenhocvien: hocVien['ten_hoc_vien'],
+            mahocvien: hocVien['ma_hoc_vien'],
+            sdt: hocVien['so_dien_thoai'],
+            tengiaovien: hocVien['ten_hoc_vien'],
+            magiaovien: hocVien['ma_giao_vien_quan_ly'],
+            kichhoat: hocVien['kich_hoat'],
+            reloadlist: reloadlist,
           );
         }).toList();
 
-        hocVienactiveWidgets = Listhocvien.map((hocVien) {
-          if (hocVien['kich_hoat'] == true) {
-            return HocvienCardWidget(
-              key: ValueKey(DateTime.now().millisecondsSinceEpoch),
-              tenhocvien: hocVien['tenhocvien'],
-              mahocvien: hocVien['mahocvien'],
-              sdt: hocVien['sodienthoai'],
-              tengiaovien: hocVien['tenhocvien'],
-              magiaovien: hocVien['magiaovienquanly'],
-              kichhoat: hocVien['kichhoat'],
-            );
-          }
-        }).cast<Widget>().toList();
+        hocVienactiveWidgets =
+            Listhocvien.where((hocVien) => hocVien['kich_hoat'] == true)
+                .map((hocVien) {
+          return HocvienCardWidget(
+            key: ValueKey(DateTime.now().millisecondsSinceEpoch),
+            tenhocvien: hocVien['ten_hoc_vien'],
+            mahocvien: hocVien['ma_hoc_vien'],
+            sdt: hocVien['so_dien_thoai'],
+            tengiaovien: hocVien['ten_hoc_vien'],
+            magiaovien: hocVien['ma_giao_vien_quan_ly'],
+            kichhoat: hocVien['kich_hoat'],
+            reloadlist: reloadlist,
+          );
+        }).toList();
 
-        hocVienchuaactiveWidgets = Listhocvien.map((hocVien) {
-          if (hocVien['kich_hoat'] == false) {
-            return HocvienCardWidget(
-              key: ValueKey(DateTime.now().millisecondsSinceEpoch),
-              tenhocvien: hocVien['tenhocvien'],
-              mahocvien: hocVien['mahocvien'],
-              sdt: hocVien['sodienthoai'],
-              tengiaovien: hocVien['tenhocvien'],
-              magiaovien: hocVien['magiaovienquanly'],
-              kichhoat: hocVien['kichhoat'],
-            );
-          }
-        }).cast<Widget>().toList();
+        hocVienchuaactiveWidgets =
+            Listhocvien.where((hocVien) => hocVien['kich_hoat'] == false)
+                .map((hocVien) {
+          return HocvienCardWidget(
+            key: ValueKey(DateTime.now().millisecondsSinceEpoch),
+            tenhocvien: hocVien['ten_hoc_vien'],
+            mahocvien: hocVien['ma_hoc_vien'],
+            sdt: hocVien['so_dien_thoai'],
+            tengiaovien: hocVien['ten_hoc_vien'],
+            magiaovien: hocVien['ma_giao_vien_quan_ly'],
+            kichhoat: hocVien['kich_hoat'],
+            reloadlist: reloadlist,
+          );
+        }).toList();
+        print("hello hello hello hello hello ${Listgiaovien.length}");
       });
     });
   }
@@ -336,36 +383,6 @@ class _MainCustomerListWidgetState extends State<MainCustomerListWidget>
 
   @override
   Widget build(BuildContext context) {
-    for (var hocVien in Listhocvien) {
-      if (hocVien['kich_hoat'] == true) {
-        hocVienactiveWidgets.add(HocvienCardWidget(
-          tenhocvien: hocVien['ten_hoc_vien'],
-          mahocvien: hocVien['ma_hoc_vien'],
-          sdt: hocVien['so_dien_thoai'],
-          tengiaovien: hocVien['ten_hoc_vien'],
-          magiaovien: hocVien['ma_giao_vien_quan_ly'],
-          kichhoat: hocVien['kich_hoat'],
-        ));
-      } else if (hocVien['kich_hoat'] == false) {
-        hocVienchuaactiveWidgets.add(HocvienCardWidget(
-          tenhocvien: hocVien['ten_hoc_vien'],
-          mahocvien: hocVien['ma_hoc_vien'],
-          sdt: hocVien['so_dien_thoai'],
-          tengiaovien: hocVien['ten_hoc_vien'],
-          magiaovien: hocVien['ma_giao_vien_quan_ly'],
-          kichhoat: hocVien['kich_hoat'],
-        ));
-      }
-
-      hocVienWidgets.add(HocvienCardWidget(
-        tenhocvien: hocVien['ten_hoc_vien'],
-        mahocvien: hocVien['ma_hoc_vien'],
-        sdt: hocVien['so_dien_thoai'],
-        tengiaovien: hocVien['ten_hoc_vien'],
-        magiaovien: hocVien['ma_giao_vien_quan_ly'],
-        kichhoat: hocVien['kich_hoat'],
-      ));
-    }
     return GestureDetector(
       onTap: () => _model.unfocusNode.canRequestFocus
           ? FocusScope.of(context).requestFocus(_model.unfocusNode)
@@ -496,7 +513,7 @@ class _MainCustomerListWidgetState extends State<MainCustomerListWidget>
                                   padding: EdgeInsetsDirectional.fromSTEB(
                                       16, 16, 100, 0),
                                   child: FFButtonWidget(
-                                    onPressed: () {
+                                    onPressed: () async {
                                       showDialog(
                                         context: context,
                                         builder: (BuildContext context) {
@@ -524,16 +541,16 @@ class _MainCustomerListWidgetState extends State<MainCustomerListWidget>
                                             content: SingleChildScrollView(
                                               child: Column(
                                                 children: <Widget>[
-                                                  AddingcardWidget()
+                                                  AddingcardWidget(
+                                                      task: "create")
                                                 ],
                                               ),
                                             ),
                                           );
                                         },
-                                      ).then((_) {
-                                        reloadlist();
+                                      ).then((_) async {
+                                        await reloadlist();
                                       });
-                                      ;
                                     },
                                     text: /*FFLocalizations.of(context).getText(
                                       'zvm6keco' /* Thêm học viên */,

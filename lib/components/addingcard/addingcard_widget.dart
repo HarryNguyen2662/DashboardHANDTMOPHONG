@@ -11,7 +11,34 @@ import 'addingcard_model.dart';
 export 'addingcard_model.dart';
 
 class AddingcardWidget extends StatefulWidget {
-  const AddingcardWidget({super.key});
+  final String? tenhocvien;
+  final String? mahocvien;
+  final String? magiaovienquanly;
+  final String? sodienthoai;
+  final String? email;
+
+  final Function(String, String, String, String, bool)? passdownvalue;
+
+  final String? matrungtam;
+  final String? ghichu;
+  final bool? kichhoat;
+  final bool? datotnghiep;
+
+  final String? task;
+
+  const AddingcardWidget(
+      {super.key,
+      this.tenhocvien,
+      this.mahocvien,
+      this.magiaovienquanly,
+      this.sodienthoai,
+      this.email,
+      this.matrungtam,
+      this.ghichu,
+      this.kichhoat,
+      this.datotnghiep,
+      required this.task,
+      this.passdownvalue});
 
   @override
   State<AddingcardWidget> createState() => _AddingcardWidgetState();
@@ -28,22 +55,38 @@ class _AddingcardWidgetState extends State<AddingcardWidget> {
 
   Future<void> createhocvien() async {
     Map<String, dynamic> hocVienBody = {};
-    /*hocVienBody['tengiaovien'] = _model.textController1.text;
-    hocVienBody['magiaovien'] = _model.textController2.text;
-    hocVienBody['sodienthoai'] = _model.textController3.text;
-    hocVienBody['matrungtam'] = _model.textController4.text;
-    hocVienBody['ghichu'] = _model.textController5.text;*/
-
     hocVienBody['tenhocvien'] = _model.textController1.text;
     hocVienBody['mahocvien'] = _model.textController2.text;
     hocVienBody['magiaovienquanly'] = _model.textController3.text;
     hocVienBody['sodienthoai'] = _model.textController4.text;
     hocVienBody['email'] = _model.textController5.text;
     hocVienBody['matrungtam'] = _model.textController6.text;
-    hocVienBody['ghichu'] = _model.textController5.text;
     hocVienBody['kichhoat'] = _model.checkboxListTileValue1;
     hocVienBody['datotnghiep'] = _model.checkboxListTileValue2;
     print(await hocVienAPI.createHocVien(hocVienBody));
+    return;
+  }
+
+  Future<void> updatehocvien_database() async {
+    var result = await hocVienAPI.authhocvien(_model.textController2.text);
+    var id = result[0]['id'];
+    Map<String, dynamic> hocVienBody = {};
+    hocVienBody['tenhocvien'] = _model.textController1.text;
+    hocVienBody['mahocvien'] = _model.textController2.text;
+    hocVienBody['magiaovienquanly'] = _model.textController3.text;
+    hocVienBody['sodienthoai'] = _model.textController4.text;
+    hocVienBody['email'] = _model.textController5.text;
+    hocVienBody['matrungtam'] = _model.textController6.text;
+    hocVienBody['kichhoat'] = _model.checkboxListTileValue1;
+    hocVienBody['datotnghiep'] = _model.checkboxListTileValue2;
+    print(await hocVienAPI.updateHocVien(hocVienBody, id));
+
+    widget.passdownvalue!(
+        _model.textController1.text,
+        _model.textController2.text,
+        _model.textController3.text,
+        _model.textController4.text,
+        _model.checkboxListTileValue1!);
     return;
   }
 
@@ -51,28 +94,30 @@ class _AddingcardWidgetState extends State<AddingcardWidget> {
   void initState() {
     super.initState();
     _model = createModel(context, () => AddingcardModel());
-
     _model.textController1 ??= TextEditingController();
     _model.textFieldFocusNode1 ??= FocusNode();
-
     _model.textController2 ??= TextEditingController();
     _model.textFieldFocusNode2 ??= FocusNode();
-
     _model.textController3 ??= TextEditingController();
     _model.textFieldFocusNode3 ??= FocusNode();
-
     _model.textController4 ??= TextEditingController();
     _model.textFieldFocusNode4 ??= FocusNode();
-
     _model.textController5 ??= TextEditingController();
     _model.textFieldFocusNode5 ??= FocusNode();
-
     _model.textController6 ??= TextEditingController();
     _model.textFieldFocusNode6 ??= FocusNode();
-
-    _model.textController7 ??= TextEditingController();
-    _model.textFieldFocusNode7 ??= FocusNode();
-
+    if (widget.task == "update") {
+      _model.textController1.text = widget.tenhocvien ?? '';
+      _model.textController2.text = widget.mahocvien ?? '';
+      _model.textController3.text = widget.magiaovienquanly ?? '';
+      _model.textController4.text = widget.sodienthoai ?? '';
+      _model.checkboxListTileValue1 = widget.kichhoat ?? false;
+      hocVienAPI.authhocvien(_model.textController2.text).then((result) {
+        _model.textController5.text = result[0]["email"];
+        _model.textController6.text = result[0]["ma_trung_tam"];
+        _model.checkboxListTileValue2 = result[0]["da_tot_nghiep"];
+      });
+    }
     WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
@@ -938,148 +983,6 @@ class _AddingcardWidgetState extends State<AddingcardWidget> {
                       ),
                     ),
                     Padding(
-                      padding: EdgeInsetsDirectional.fromSTEB(0, 16, 0, 0),
-                      child: Row(
-                        mainAxisSize: MainAxisSize.max,
-                        children: [
-                          Expanded(
-                            child: Padding(
-                              padding:
-                                  EdgeInsetsDirectional.fromSTEB(0, 0, 8, 0),
-                              child: Column(
-                                mainAxisSize: MainAxisSize.max,
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text(
-                                    /*FFLocalizations.of(context).getText(
-                                      '5b9ixzyz' /* Ghi chú */,
-                                    ),*/
-                                    "Ghi chú",
-                                    style: FlutterFlowTheme.of(context)
-                                        .bodyMedium
-                                        .override(
-                                          fontFamily:
-                                              FlutterFlowTheme.of(context)
-                                                  .bodyMediumFamily,
-                                          letterSpacing: 0,
-                                          useGoogleFonts: GoogleFonts.asMap()
-                                              .containsKey(
-                                                  FlutterFlowTheme.of(context)
-                                                      .bodyMediumFamily),
-                                        ),
-                                  ),
-                                  Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
-                                        0, 8, 0, 0),
-                                    child: Container(
-                                      width: double.infinity,
-                                      decoration: BoxDecoration(),
-                                      child: TextFormField(
-                                        controller: _model.textController7,
-                                        focusNode: _model.textFieldFocusNode7,
-                                        autofocus: true,
-                                        obscureText: false,
-                                        decoration: InputDecoration(
-                                          labelStyle: FlutterFlowTheme.of(
-                                                  context)
-                                              .labelMedium
-                                              .override(
-                                                fontFamily:
-                                                    FlutterFlowTheme.of(context)
-                                                        .labelMediumFamily,
-                                                letterSpacing: 0,
-                                                useGoogleFonts: GoogleFonts
-                                                        .asMap()
-                                                    .containsKey(
-                                                        FlutterFlowTheme.of(
-                                                                context)
-                                                            .labelMediumFamily),
-                                              ),
-                                          hintStyle: FlutterFlowTheme.of(
-                                                  context)
-                                              .labelMedium
-                                              .override(
-                                                fontFamily:
-                                                    FlutterFlowTheme.of(context)
-                                                        .labelMediumFamily,
-                                                letterSpacing: 0,
-                                                useGoogleFonts: GoogleFonts
-                                                        .asMap()
-                                                    .containsKey(
-                                                        FlutterFlowTheme.of(
-                                                                context)
-                                                            .labelMediumFamily),
-                                              ),
-                                          enabledBorder: OutlineInputBorder(
-                                            borderSide: BorderSide(
-                                              color:
-                                                  FlutterFlowTheme.of(context)
-                                                      .primary,
-                                              width: 2,
-                                            ),
-                                            borderRadius:
-                                                BorderRadius.circular(4),
-                                          ),
-                                          focusedBorder: OutlineInputBorder(
-                                            borderSide: BorderSide(
-                                              color:
-                                                  FlutterFlowTheme.of(context)
-                                                      .secondary,
-                                              width: 2,
-                                            ),
-                                            borderRadius:
-                                                BorderRadius.circular(4),
-                                          ),
-                                          errorBorder: OutlineInputBorder(
-                                            borderSide: BorderSide(
-                                              color:
-                                                  FlutterFlowTheme.of(context)
-                                                      .alternate,
-                                              width: 2,
-                                            ),
-                                            borderRadius:
-                                                BorderRadius.circular(4),
-                                          ),
-                                          focusedErrorBorder:
-                                              OutlineInputBorder(
-                                            borderSide: BorderSide(
-                                              color:
-                                                  FlutterFlowTheme.of(context)
-                                                      .alternate,
-                                              width: 2,
-                                            ),
-                                            borderRadius:
-                                                BorderRadius.circular(4),
-                                          ),
-                                        ),
-                                        style: FlutterFlowTheme.of(context)
-                                            .bodyMedium
-                                            .override(
-                                              fontFamily:
-                                                  FlutterFlowTheme.of(context)
-                                                      .bodyMediumFamily,
-                                              letterSpacing: 0,
-                                              useGoogleFonts: GoogleFonts
-                                                      .asMap()
-                                                  .containsKey(
-                                                      FlutterFlowTheme.of(
-                                                              context)
-                                                          .bodyMediumFamily),
-                                            ),
-                                        validator: _model
-                                            .textController7Validator
-                                            .asValidator(context),
-                                      ),
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                    Padding(
                       padding: EdgeInsetsDirectional.fromSTEB(0, 32, 0, 16),
                       child: Row(
                         mainAxisSize: MainAxisSize.max,
@@ -1221,7 +1124,11 @@ class _AddingcardWidgetState extends State<AddingcardWidget> {
                           FFButtonWidget(
                             onPressed: () async {
                               //print('Button pressed ...');
-                              await createhocvien();
+                              if (widget.task == "update") {
+                                await updatehocvien_database();
+                              } else if (widget.task == "create") {
+                                await createhocvien();
+                              }
                               Navigator.of(context).pop();
                             },
                             text: /*FFLocalizations.of(context).getText(

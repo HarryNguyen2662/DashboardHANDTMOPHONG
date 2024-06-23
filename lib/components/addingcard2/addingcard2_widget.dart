@@ -11,7 +11,25 @@ import 'addingcard2_model.dart';
 export 'addingcard2_model.dart';
 
 class Addingcard2Widget extends StatefulWidget {
-  const Addingcard2Widget({super.key});
+  final String? tengiaovien;
+  final String? magiaovien;
+  final String? matrungtam;
+  final String? sodienthoai;
+  final String? ghichu;
+
+  final Function(String, String, String, String, String)? passdownvalue;
+
+  final String? task;
+
+  const Addingcard2Widget(
+      {super.key,
+      this.tengiaovien,
+      this.magiaovien,
+      this.matrungtam,
+      this.sodienthoai,
+      this.ghichu,
+      this.passdownvalue,
+      required this.task});
 
   @override
   State<Addingcard2Widget> createState() => _Addingcard2WidgetState();
@@ -37,6 +55,26 @@ class _Addingcard2WidgetState extends State<Addingcard2Widget> {
     return;
   }
 
+  Future<void> updategiaovien_database() async {
+    var result = await giaoVienAPI.authgiaovien(_model.textController2.text);
+    var id = result[0]['id'];
+    Map<String, dynamic> giaoVienBody = {};
+    giaoVienBody['tengiaovien'] = _model.textController1.text;
+    giaoVienBody['magiaovien'] = _model.textController2.text;
+    giaoVienBody['sodienthoai'] = _model.textController3.text;
+    giaoVienBody['matrungtam'] = _model.textController4.text;
+    giaoVienBody['ghichu'] = _model.textController5.text;
+
+    print(await giaoVienAPI.updateGiaoVien(giaoVienBody, id));
+    widget.passdownvalue!(
+        _model.textController1.text,
+        _model.textController2.text,
+        _model.textController3.text,
+        _model.textController4.text,
+        _model.textController5.text);
+    return;
+  }
+
   @override
   void initState() {
     super.initState();
@@ -56,7 +94,13 @@ class _Addingcard2WidgetState extends State<Addingcard2Widget> {
 
     _model.textController5 ??= TextEditingController();
     _model.textFieldFocusNode5 ??= FocusNode();
-
+    if (widget.task == "update") {
+      _model.textController1.text = widget.tengiaovien!;
+      _model.textController2.text = widget.magiaovien!;
+      _model.textController3.text = widget.sodienthoai!;
+      _model.textController4.text = widget.matrungtam!;
+      _model.textController5.text = widget.ghichu!;
+    }
     WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
@@ -854,7 +898,11 @@ class _Addingcard2WidgetState extends State<Addingcard2Widget> {
                           FFButtonWidget(
                             onPressed: () async {
                               //print('Button pressed ...');
-                              await creategiaovien();
+                              if (widget.task == "update") {
+                                await updategiaovien_database();
+                              } else if (widget.task == "create") {
+                                await creategiaovien();
+                              }
                               Navigator.of(context).pop();
                             },
                             text: /*FFLocalizations.of(context).getText(

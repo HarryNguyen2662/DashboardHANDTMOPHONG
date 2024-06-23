@@ -16,6 +16,11 @@ class HocvienCardModel extends FlutterFlowModel<HocvienCardWidget> {
   // State field(s) for CheckboxListTile widget.
   //bool? checkboxListTileValue;
   bool? kichhoat;
+  String? tenhocvien;
+  String? mahocvien;
+  String? sdt;
+  String? tengiaovien;
+  String? magiaovien;
 
   @override
   void initState(BuildContext context) {}

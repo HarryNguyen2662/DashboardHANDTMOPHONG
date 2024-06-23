@@ -11,7 +11,11 @@ class GiaovienCardModel extends FlutterFlowModel<GiaovienCardWidget> {
   ///  State fields for stateful widgets in this component.
 
   // State field(s) for CheckboxListTile widget.
-
+  String? tengiaovien;
+  String? magiaovien;
+  String? sdt;
+  String? matrungtam;
+  String? ghichu;
   @override
   void initState(BuildContext context) {}
 

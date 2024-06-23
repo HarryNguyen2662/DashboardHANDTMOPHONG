@@ -91,6 +91,40 @@ class GiaoVienAPI {
       return jsonDecode(response.body);
     }
   }
+
+  Future<dynamic> updateGiaoVien(
+      Map<String, dynamic> giaoVienBody, String id) async {
+    final response = await http.patch(
+      Uri.parse('$baseUrl/$id'),
+      headers: <String, String>{
+        'Content-Type': 'application/json; charset=UTF-8',
+      },
+      body: jsonEncode({
+        'matrungtam': giaoVienBody['matrungtam'],
+        'magiaovien': giaoVienBody['magiaovien'],
+        'tengiaovien': giaoVienBody['tengiaovien'],
+        'sodienthoai': giaoVienBody['sodienthoai'],
+        'ghichu': giaoVienBody['ghichu'],
+      }),
+    );
+
+    if (response.statusCode == 202) {
+      return jsonDecode(response.body);
+    } else {
+      return jsonDecode(response.body);
+    }
+  }
+
+  Future<dynamic> authgiaovien(String magiaovien) async {
+    final response = await http.get(
+      Uri.parse('$baseUrl/authgiaovien/$magiaovien'),
+    );
+    if (response.statusCode == 200) {
+      return jsonDecode(response.body);
+    } else {
+      throw Exception('Failed to load giao vien by ma giao vien');
+    }
+  }
 }
 
 class HocVienAPI {
@@ -113,10 +147,47 @@ class HocVienAPI {
       }),
     );
 
-    if (response.statusCode == 201) {
+    if (response.statusCode == 200) {
       return jsonDecode(response.body);
     } else {
       return jsonDecode(response.body);
+    }
+  }
+
+  Future<dynamic> updateHocVien(
+      Map<String, dynamic> hocVienBody, String id) async {
+    final response = await http.patch(
+      Uri.parse('$baseUrl/$id'),
+      headers: <String, String>{
+        'Content-Type': 'application/json; charset=UTF-8',
+      },
+      body: jsonEncode({
+        'mahocvien': hocVienBody['mahocvien'],
+        'matrungtam': hocVienBody['matrungtam'],
+        'magiaovienquanly': hocVienBody['magiaovienquanly'],
+        'tenhocvien': hocVienBody['tenhocvien'],
+        'sodienthoai': hocVienBody['sodienthoai'],
+        'email': hocVienBody['email'],
+        'kichhoat': hocVienBody['kichhoat'],
+        'datotnghiep': hocVienBody['datotnghiep'],
+      }),
+    );
+
+    if (response.statusCode == 202) {
+      return jsonDecode(response.body);
+    } else {
+      return jsonDecode(response.body);
+    }
+  }
+
+  Future<dynamic> authhocvien(String mahocvien) async {
+    final response = await http.get(
+      Uri.parse('$baseUrl/authhocvien/$mahocvien'),
+    );
+    if (response.statusCode == 200) {
+      return jsonDecode(response.body);
+    } else {
+      throw Exception('Failed to load Trung Tam by Id');
     }
   }
 }

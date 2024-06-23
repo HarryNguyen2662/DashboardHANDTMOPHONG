@@ -18,8 +18,8 @@ import 'package:flutter/scheduler.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
-import 'my_team_model.dart';
-export 'my_team_model.dart';
+import 'giaovien_listpage_model.dart';
+export 'giaovien_listpage_model.dart';
 
 class MyTeamWidget extends StatefulWidget {
   const MyTeamWidget({super.key});
@@ -92,37 +92,36 @@ class _MyTeamWidgetState extends State<MyTeamWidget>
       this,
     );
     WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
+    giaoVienWidgets.clear();
     for (var giaoVien in Listgiaovien) {
       giaoVienWidgets.add(GiaovienCardWidget(
         key: ValueKey(DateTime.now().millisecondsSinceEpoch),
         sdt: giaoVien['so_dien_thoai'],
         tengiaovien: giaoVien['ten_giao_vien'],
         magiaovien: giaoVien['ma_giao_vien'],
-        kichhoat: false,
         matrungtam: giaoVien['ma_trung_tam'],
+        reloadlist: reloadlist,
+        ghichu: giaoVien['ghi_chu'],
       ));
     }
-    print("hello hello hello hello hello ${Listgiaovien.length}");
   }
 
   Future<void> reloadlist() async {
     trungTamAPI.getTrungTamLISTGV(currentUserId).then((value) {
       setState(() {
+        giaoVienWidgets.clear();
         Listgiaovien = value;
-        print(
-            "con cac con cac con cac con cac con cac ${giaoVienWidgets.length}");
         giaoVienWidgets = Listgiaovien.map((giaoVien) {
           return GiaovienCardWidget(
             key: ValueKey(DateTime.now().millisecondsSinceEpoch),
             sdt: giaoVien['so_dien_thoai'],
             tengiaovien: giaoVien['ten_giao_vien'],
             magiaovien: giaoVien['ma_giao_vien'],
-            kichhoat: false,
             matrungtam: giaoVien['ma_trung_tam'],
+            reloadlist: reloadlist,
+            ghichu: giaoVien['ghi_chu'],
           );
         }).toList();
-        print(
-            "con cac con cac con cac con cac con cac ${giaoVienWidgets.length}");
       });
     });
   }
@@ -316,7 +315,9 @@ class _MyTeamWidgetState extends State<MyTeamWidget>
                                               content: SingleChildScrollView(
                                                 child: Column(
                                                   children: <Widget>[
-                                                    Addingcard2Widget()
+                                                    Addingcard2Widget(
+                                                      task: 'create',
+                                                    )
                                                   ],
                                                 ),
                                               ),
