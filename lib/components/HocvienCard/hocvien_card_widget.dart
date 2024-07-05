@@ -1,3 +1,4 @@
+import 'package:dashboardmophong2/backend/API/API_trungtam.dart';
 import 'package:dashboardmophong2/components/addingcard/addingcard_widget.dart';
 
 import '/flutter_flow/flutter_flow_animations.dart';
@@ -58,8 +59,17 @@ class _HocvienCardWidgetState extends State<HocvienCardWidget>
     _model.magiaovien = magiaovien;
     _model.sdt = sdt;
     _model.kichhoat = kichhoat;
+    _model.tengiaovien = tengiaovien;
     super.setState(callback);
     _model.onUpdate();
+  }
+
+  Future<void> gettengiaovien() async {
+    giaoVienAPI.authgiaovien(magiaovien).then((value) {
+      setState(() {
+        _model.tengiaovien = value[0]["ten_giao_vien"];
+      });
+    });
   }
 
   @override
@@ -100,6 +110,8 @@ class _HocvienCardWidgetState extends State<HocvienCardWidget>
     _model.magiaovien = magiaovien;
     _model.sdt = sdt;
     _model.kichhoat = kichhoat;
+    _model.tengiaovien = tengiaovien;
+    gettengiaovien();
     WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
@@ -144,7 +156,7 @@ class _HocvienCardWidgetState extends State<HocvienCardWidget>
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                Flexible(
+                Expanded(
                   child: Column(
                     mainAxisSize: MainAxisSize.max,
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -152,10 +164,7 @@ class _HocvienCardWidgetState extends State<HocvienCardWidget>
                       Padding(
                         padding: EdgeInsetsDirectional.fromSTEB(16, 0, 0, 0),
                         child: Text(
-                          /*FFLocalizations.of(context).getText(
-                            '52hh98f0' /* {ten hoc vien} */,
-                          ),*/
-                          "Tên học viên : ${_model.tenhocvien}",
+                          "Học viên : ${_model.tenhocvien}",
                           style: FlutterFlowTheme.of(context)
                               .titleMedium
                               .override(
@@ -171,9 +180,6 @@ class _HocvienCardWidgetState extends State<HocvienCardWidget>
                       Padding(
                         padding: EdgeInsetsDirectional.fromSTEB(16, 2, 0, 0),
                         child: Text(
-                          /*FFLocalizations.of(context).getText(
-                            'p5yl8tfa' /* Mã học viên : {ma học viên} */,
-                          ),*/
                           "Mã học viên : ${_model.mahocvien}",
                           style: FlutterFlowTheme.of(context)
                               .bodySmall
@@ -190,9 +196,6 @@ class _HocvienCardWidgetState extends State<HocvienCardWidget>
                       Padding(
                         padding: EdgeInsetsDirectional.fromSTEB(16, 0, 0, 0),
                         child: Text(
-                          /*FFLocalizations.of(context).getText(
-                            '1hwa7z53' /* Số điện thoại : {số điện thoại... */,
-                          ),*/
                           "Số điện thoại : ${_model.sdt}",
                           style: FlutterFlowTheme.of(context)
                               .bodySmall
@@ -221,10 +224,7 @@ class _HocvienCardWidgetState extends State<HocvienCardWidget>
                         child: Padding(
                           padding: EdgeInsetsDirectional.fromSTEB(16, 2, 0, 0),
                           child: Text(
-                            /*FFLocalizations.of(context).getText(
-                              'dh2czehh' /* Tên giáo viên hướng dân : {Tên... */,
-                            ),*/
-                            "Tên giáo viên hướng dân : ${_model.tengiaovien}",
+                            "Giáo viên hướng dẫn : ${_model.tengiaovien}",
                             style: FlutterFlowTheme.of(context)
                                 .bodySmall
                                 .override(
@@ -242,10 +242,7 @@ class _HocvienCardWidgetState extends State<HocvienCardWidget>
                         child: Padding(
                           padding: EdgeInsetsDirectional.fromSTEB(16, 2, 0, 0),
                           child: Text(
-                            /*FFLocalizations.of(context).getText(
-                              'znrb0zl9' /* Mã giáo viên hướng dẫn : {mã g... */,
-                            ),*/
-                            "Mã giáo viên hướng dẫn : ${_model.magiaovien}",
+                            "Mã giáo viên : ${_model.magiaovien}",
                             style: FlutterFlowTheme.of(context)
                                 .bodySmall
                                 .override(
@@ -280,9 +277,6 @@ class _HocvienCardWidgetState extends State<HocvienCardWidget>
                         });
                       },
                       title: Text(
-                        /*FFLocalizations.of(context).getText(
-                          'vz7enm8v' /* Kích hoạt */,
-                        ),*/
                         "kích hoạt",
                         style: FlutterFlowTheme.of(context).titleLarge.override(
                               fontFamily:
@@ -302,7 +296,7 @@ class _HocvienCardWidgetState extends State<HocvienCardWidget>
                     ),
                   ),
                 ),
-                Flexible(
+                Expanded(
                   child: FFButtonWidget(
                     onPressed: () async {
                       print("Xem và chỉnh sửa");
@@ -311,7 +305,7 @@ class _HocvienCardWidgetState extends State<HocvienCardWidget>
                         builder: (BuildContext context) {
                           return AlertDialog(
                             title: Text(
-                              'Thêm học viên',
+                              'Xem và chỉnh sửa thông tin học viên',
                               style: FlutterFlowTheme.of(context)
                                   .bodyMedium
                                   .override(
@@ -358,10 +352,7 @@ class _HocvienCardWidgetState extends State<HocvienCardWidget>
                         await widget.reloadlist();
                       });
                     },
-                    text: /*FFLocalizations.of(context).getText(
-                      'a89x3by5' /* Xem và chỉnh sửa */,
-                    ),*/
-                        "Xem và chỉnh sửa",
+                    text: "Xem chi tiết / Chỉnh sửa",
                     options: FFButtonOptions(
                       height: 40,
                       padding: EdgeInsetsDirectional.fromSTEB(24, 0, 24, 0),

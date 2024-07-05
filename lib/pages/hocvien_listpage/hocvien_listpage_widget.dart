@@ -428,7 +428,7 @@ class _MainCustomerListWidgetState extends State<MainCustomerListWidget>
                     color: FlutterFlowTheme.of(context).secondaryText,
                   ),
                   iconTwo: Icon(
-                    Icons.group,
+                    Icons.reduce_capacity,
                     color: FlutterFlowTheme.of(context).primary,
                   ),
                   iconThree: Icon(
@@ -449,7 +449,7 @@ class _MainCustomerListWidgetState extends State<MainCustomerListWidget>
                   textThree: FlutterFlowTheme.of(context).secondaryText,
                   textFour: FlutterFlowTheme.of(context).secondaryText,
                   iconFive: Icon(
-                    Icons.reduce_capacity,
+                    Icons.group,
                     color: FlutterFlowTheme.of(context).secondaryText,
                   ),
                   colorBgFive: FlutterFlowTheme.of(context).secondaryBackground,

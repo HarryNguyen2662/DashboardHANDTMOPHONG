@@ -1,15 +1,21 @@
-2024/06/21-23:28:46.834 a503 Reusing MANIFEST /private/var/folders/bg/l9859q_s1yq8fzwyl1zs1sdr0000gn/T/flutter_tools.7rjtfd/flutter_tools_chrome_device.TDWi3C/Default/shared_proto_db/MANIFEST-000001
-2024/06/21-23:28:46.834 a503 Recovering log #26
-2024/06/21-23:28:46.835 a503 Reusing old log /private/var/folders/bg/l9859q_s1yq8fzwyl1zs1sdr0000gn/T/flutter_tools.7rjtfd/flutter_tools_chrome_device.TDWi3C/Default/shared_proto_db/000026.log 
-2024/06/21-23:28:46.835 a503 Delete type=0 #13
-2024/06/21-23:28:46.835 a503 Delete type=0 #7
-2024/06/21-23:28:46.835 a503 Delete type=0 #4
-2024/06/21-23:28:46.835 a503 Delete type=0 #10
-2024/06/21-23:28:46.835 a503 Delete type=0 #16
-2024/06/21-23:28:46.835 a503 Delete type=0 #3
-2024/06/21-23:28:46.835 a503 Delete type=2 #14
-2024/06/21-23:28:46.835 a503 Delete type=2 #17
-2024/06/21-23:28:46.835 a503 Delete type=2 #11
-2024/06/21-23:28:46.835 a503 Delete type=2 #8
-2024/06/21-23:28:46.835 a503 Delete type=0 #19
-2024/06/21-23:28:46.835 a503 Delete type=0 #23
+2024/07/06-00:59:45.544 9d03 Reusing MANIFEST /private/var/folders/bg/l9859q_s1yq8fzwyl1zs1sdr0000gn/T/flutter_tools.j2MsIa/flutter_tools_chrome_device.eBIqK9/Default/shared_proto_db/MANIFEST-000001
+2024/07/06-00:59:45.545 9d03 Recovering log #32
+2024/07/06-00:59:45.548 9d03 Reusing old log /private/var/folders/bg/l9859q_s1yq8fzwyl1zs1sdr0000gn/T/flutter_tools.j2MsIa/flutter_tools_chrome_device.eBIqK9/Default/shared_proto_db/000032.log 
+2024/07/06-00:59:45.548 9d03 Delete type=0 #13
+2024/07/06-00:59:45.548 9d03 Delete type=0 #7
+2024/07/06-00:59:45.548 9d03 Delete type=0 #4
+2024/07/06-00:59:45.548 9d03 Delete type=0 #10
+2024/07/06-00:59:45.548 9d03 Delete type=0 #29
+2024/07/06-00:59:45.548 9d03 Delete type=0 #16
+2024/07/06-00:59:45.548 9d03 Delete type=0 #3
+2024/07/06-00:59:45.548 9d03 Delete type=2 #14
+2024/07/06-00:59:45.548 9d03 Delete type=2 #17
+2024/07/06-00:59:45.548 9d03 Delete type=2 #11
+2024/07/06-00:59:45.548 9d03 Delete type=2 #8
+2024/07/06-00:59:45.548 9d03 Delete type=2 #21
+2024/07/06-00:59:45.548 9d03 Delete type=2 #27
+2024/07/06-00:59:45.548 9d03 Delete type=2 #24
+2024/07/06-00:59:45.548 9d03 Delete type=2 #30
+2024/07/06-00:59:45.548 9d03 Delete type=0 #26
+2024/07/06-00:59:45.548 9d03 Delete type=0 #19
+2024/07/06-00:59:45.548 9d03 Delete type=0 #23

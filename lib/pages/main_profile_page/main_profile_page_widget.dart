@@ -150,7 +150,7 @@ class _MainProfilePageWidgetState extends State<MainProfilePageWidget>
                         color: FlutterFlowTheme.of(context).secondaryText,
                       ),
                       iconTwo: Icon(
-                        Icons.group,
+                        Icons.reduce_capacity,
                         color: FlutterFlowTheme.of(context).secondaryText,
                       ),
                       iconThree: Icon(
@@ -174,7 +174,7 @@ class _MainProfilePageWidgetState extends State<MainProfilePageWidget>
                       textThree: FlutterFlowTheme.of(context).secondaryText,
                       textFour: FlutterFlowTheme.of(context).primaryText,
                       iconFive: Icon(
-                        Icons.reduce_capacity,
+                        Icons.group,
                         color: FlutterFlowTheme.of(context).secondaryText,
                       ),
                       colorBgFive:

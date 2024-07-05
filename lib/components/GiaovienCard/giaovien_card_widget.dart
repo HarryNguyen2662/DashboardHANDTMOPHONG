@@ -98,7 +98,6 @@ class _GiaovienCardWidgetState extends State<GiaovienCardWidget> {
             mainAxisSize: MainAxisSize.max,
             children: [
               Expanded(
-                flex: 2,
                 child: Row(
                   mainAxisSize: MainAxisSize.max,
                   children: [
@@ -158,7 +157,6 @@ class _GiaovienCardWidgetState extends State<GiaovienCardWidget> {
                 tablet: false,
               ))
                 Expanded(
-                  flex: 2,
                   child: Text(
                     /*FFLocalizations.of(context).getText(
                       'ynm0bq42' /* huhuhuhu */,
@@ -202,7 +200,7 @@ class _GiaovienCardWidgetState extends State<GiaovienCardWidget> {
                     /*FFLocalizations.of(context).getText(
                       '1lrlfpb7' /* sdfsfdsfsdfsdf */,
                     ),*/
-                    "${widget.matrungtam}",
+                    "${widget.ghichu}",
                     style: FlutterFlowTheme.of(context).bodyMedium.override(
                           fontFamily:
                               FlutterFlowTheme.of(context).bodyMediumFamily,
@@ -221,7 +219,7 @@ class _GiaovienCardWidgetState extends State<GiaovienCardWidget> {
                       builder: (BuildContext context) {
                         return AlertDialog(
                           title: Text(
-                            'Thêm học viên',
+                            'Xem và chỉnh sửa thông tin giáo viên',
                             style: FlutterFlowTheme.of(context)
                                 .bodyMedium
                                 .override(
@@ -267,7 +265,7 @@ class _GiaovienCardWidgetState extends State<GiaovienCardWidget> {
                   text: /*FFLocalizations.of(context).getText(
                       'a89x3by5' /* Xem và chỉnh sửa */,
                     ),*/
-                      "Xem và chỉnh sửa",
+                      "Xem chi tiết / Chỉnh sửa",
                   options: FFButtonOptions(
                     height: 40,
                     padding: EdgeInsetsDirectional.fromSTEB(24, 0, 24, 0),

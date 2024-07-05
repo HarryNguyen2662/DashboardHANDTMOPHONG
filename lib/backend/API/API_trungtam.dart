@@ -15,7 +15,6 @@ class TrungTamAPI {
   }
 
   Future<dynamic> getTrungTamByEmail(String Email) async {
-    print(123123);
     final response =
         await http.get(Uri.parse('$baseUrl/authtrungtambyEmail/$Email'));
     if (response.statusCode == 200) {

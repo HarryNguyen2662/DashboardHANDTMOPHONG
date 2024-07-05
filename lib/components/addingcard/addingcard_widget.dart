@@ -155,7 +155,9 @@ class _AddingcardWidgetState extends State<AddingcardWidget> {
                             /*FFLocalizations.of(context).getText(
                               'pfjroj04' /* Xem và chỉnh sửa */,
                             ),*/
-                            "Xem và chỉnh sửa",
+                            (widget.task == "update")
+                                ? "Xem và chỉnh sửa"
+                                : "Nhập thông tin Học Viên cần thêm mới",
                             style: FlutterFlowTheme.of(context)
                                 .bodyMedium
                                 .override(
@@ -1134,7 +1136,9 @@ class _AddingcardWidgetState extends State<AddingcardWidget> {
                             text: /*FFLocalizations.of(context).getText(
                               'niw1ctoe' /* Xác nhận thay đổi */,
                             ),*/
-                                "Xác nhận thay đổi",
+                                (widget.task == "update")
+                                    ? "Xác nhận thay đổi"
+                                    : "Xác nhận thêm mới",
                             options: FFButtonOptions(
                               height: 47,
                               padding:

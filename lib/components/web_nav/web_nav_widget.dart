@@ -363,7 +363,7 @@ class _WebNavWidgetState extends State<WebNavWidget> {
                   ),
                 ),
               ),
-              Padding(
+              /*Padding(
                 padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 12.0),
                 child: InkWell(
                   splashColor: Colors.transparent,
@@ -421,7 +421,7 @@ class _WebNavWidgetState extends State<WebNavWidget> {
                     ),
                   ),
                 ),
-              ),
+              ),*/
               Padding(
                 padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 12.0),
                 child: InkWell(

@@ -187,7 +187,7 @@ class _MyTeamWidgetState extends State<MyTeamWidget>
                           color: FlutterFlowTheme.of(context).secondaryText,
                         ),
                         iconTwo: Icon(
-                          Icons.group,
+                          Icons.reduce_capacity,
                           color: FlutterFlowTheme.of(context).secondaryText,
                         ),
                         iconThree: Icon(
@@ -211,7 +211,7 @@ class _MyTeamWidgetState extends State<MyTeamWidget>
                         textThree: FlutterFlowTheme.of(context).secondaryText,
                         textFour: FlutterFlowTheme.of(context).secondaryText,
                         iconFive: Icon(
-                          Icons.reduce_capacity,
+                          Icons.group,
                           color: FlutterFlowTheme.of(context).primary,
                         ),
                         colorBgFive:
@@ -293,7 +293,7 @@ class _MyTeamWidgetState extends State<MyTeamWidget>
                                           builder: (BuildContext context) {
                                             return AlertDialog(
                                               title: Text(
-                                                'Thêm giáo viên',
+                                                'Thêm Giáo Viên',
                                                 style:
                                                     FlutterFlowTheme.of(context)
                                                         .bodyMedium
@@ -435,12 +435,7 @@ class _MyTeamWidgetState extends State<MyTeamWidget>
                                         mainAxisSize: MainAxisSize.max,
                                         children: [
                                           Expanded(
-                                            flex: 2,
                                             child: Text(
-                                              /*FFLocalizations.of(context)
-                                                  .getText(
-                                                'lrk6k6hj' /* Member Name */,
-                                              ),*/
                                               'Tên giáo viên',
                                               style:
                                                   FlutterFlowTheme.of(context)
@@ -466,12 +461,7 @@ class _MyTeamWidgetState extends State<MyTeamWidget>
                                             tablet: false,
                                           ))
                                             Expanded(
-                                              flex: 2,
                                               child: Text(
-                                                /*FFLocalizations.of(context)
-                                                    .getText(
-                                                  'kzjhrn2i' /* Email */,
-                                                ),*/
                                                 'Mã giáo viên',
                                                 style:
                                                     FlutterFlowTheme.of(context)
@@ -497,10 +487,6 @@ class _MyTeamWidgetState extends State<MyTeamWidget>
                                           ))
                                             Expanded(
                                               child: Text(
-                                                /*FFLocalizations.of(context)
-                                                    .getText(
-                                                  'a9enpacl' /* Last Active */,
-                                                ),*/
                                                 'số điện thoại',
                                                 style:
                                                     FlutterFlowTheme.of(context)
@@ -527,11 +513,7 @@ class _MyTeamWidgetState extends State<MyTeamWidget>
                                           ))
                                             Expanded(
                                               child: Text(
-                                                /*FFLocalizations.of(context)
-                                                    .getText(
-                                                  '61ncdfm4' /* Date Created */,
-                                                ),*/
-                                                'Mã trung tâm trực thuộc',
+                                                'Ghi chú',
                                                 style:
                                                     FlutterFlowTheme.of(context)
                                                         .bodySmall
@@ -552,11 +534,7 @@ class _MyTeamWidgetState extends State<MyTeamWidget>
                                             ),
                                           Expanded(
                                             child: Text(
-                                              /*FFLocalizations.of(context)
-                                                  .getText(
-                                                'dlz67f5g' /* Status */,
-                                              ),*/
-                                              'Kích hoạt',
+                                              '         ',
                                               textAlign: TextAlign.end,
                                               style:
                                                   FlutterFlowTheme.of(context)
