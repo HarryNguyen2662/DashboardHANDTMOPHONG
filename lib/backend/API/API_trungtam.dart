@@ -4,7 +4,8 @@ import 'package:http/http.dart' as http;
 import 'package:uuid/uuid.dart';
 
 class TrungTamAPI {
-  final String baseUrl = 'http://handtaitechmophong.zapto.org:3000/v1/trungtam';
+  final String baseUrl =
+      'https://handtaibackend-laixe.onrender.com/v1/trungtam';
   Future<dynamic> getTrungTamById(String id) async {
     final response = await http.get(Uri.parse('$baseUrl/$id'));
     if (response.statusCode == 200) {
@@ -68,7 +69,8 @@ class TrungTamAPI {
 }
 
 class GiaoVienAPI {
-  final String baseUrl = 'http://handtaitechmophong.zapto.org:3000/v1/giaovien';
+  final String baseUrl =
+      'https://handtaibackend-laixe.onrender.com/v1/giaovien';
   Future<dynamic> createGiaoVien(Map<String, dynamic> giaoVienBody) async {
     final response = await http.post(
       Uri.parse('$baseUrl'),
@@ -127,7 +129,7 @@ class GiaoVienAPI {
 }
 
 class HocVienAPI {
-  final String baseUrl = 'http://handtaitechmophong.zapto.org:3000/v1/hocvien';
+  final String baseUrl = 'https://handtaibackend-laixe.onrender.com/v1/hocvien';
   Future<dynamic> createHocVien(Map<String, dynamic> hocVienBody) async {
     final response = await http.post(
       Uri.parse('$baseUrl'),

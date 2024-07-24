@@ -1,21 +1,26 @@
-2024/07/06-00:59:45.544 9d03 Reusing MANIFEST /private/var/folders/bg/l9859q_s1yq8fzwyl1zs1sdr0000gn/T/flutter_tools.j2MsIa/flutter_tools_chrome_device.eBIqK9/Default/shared_proto_db/MANIFEST-000001
-2024/07/06-00:59:45.545 9d03 Recovering log #32
-2024/07/06-00:59:45.548 9d03 Reusing old log /private/var/folders/bg/l9859q_s1yq8fzwyl1zs1sdr0000gn/T/flutter_tools.j2MsIa/flutter_tools_chrome_device.eBIqK9/Default/shared_proto_db/000032.log 
-2024/07/06-00:59:45.548 9d03 Delete type=0 #13
-2024/07/06-00:59:45.548 9d03 Delete type=0 #7
-2024/07/06-00:59:45.548 9d03 Delete type=0 #4
-2024/07/06-00:59:45.548 9d03 Delete type=0 #10
-2024/07/06-00:59:45.548 9d03 Delete type=0 #29
-2024/07/06-00:59:45.548 9d03 Delete type=0 #16
-2024/07/06-00:59:45.548 9d03 Delete type=0 #3
-2024/07/06-00:59:45.548 9d03 Delete type=2 #14
-2024/07/06-00:59:45.548 9d03 Delete type=2 #17
-2024/07/06-00:59:45.548 9d03 Delete type=2 #11
-2024/07/06-00:59:45.548 9d03 Delete type=2 #8
-2024/07/06-00:59:45.548 9d03 Delete type=2 #21
-2024/07/06-00:59:45.548 9d03 Delete type=2 #27
-2024/07/06-00:59:45.548 9d03 Delete type=2 #24
-2024/07/06-00:59:45.548 9d03 Delete type=2 #30
-2024/07/06-00:59:45.548 9d03 Delete type=0 #26
-2024/07/06-00:59:45.548 9d03 Delete type=0 #19
-2024/07/06-00:59:45.548 9d03 Delete type=0 #23
+2024/07/24-23:45:03.272 b103 Reusing MANIFEST /private/var/folders/bg/l9859q_s1yq8fzwyl1zs1sdr0000gn/T/flutter_tools.vD0zBL/flutter_tools_chrome_device.bcmaTW/Default/shared_proto_db/MANIFEST-000001
+2024/07/24-23:45:03.272 b103 Recovering log #32
+2024/07/24-23:45:03.275 b103 Level-0 table #36: started
+2024/07/24-23:45:03.964 b103 Level-0 table #36: 118419 bytes OK
+2024/07/24-23:45:03.964 b103 Recovering log #36
+2024/07/24-23:45:03.966 b103 Reusing old log /private/var/folders/bg/l9859q_s1yq8fzwyl1zs1sdr0000gn/T/flutter_tools.vD0zBL/flutter_tools_chrome_device.bcmaTW/Default/shared_proto_db/000036.log 
+2024/07/24-23:45:04.618 b103 Delete type=0 #13
+2024/07/24-23:45:04.630 b103 Delete type=0 #7
+2024/07/24-23:45:04.630 b103 Delete type=0 #4
+2024/07/24-23:45:04.630 b103 Delete type=0 #10
+2024/07/24-23:45:04.630 b103 Delete type=0 #29
+2024/07/24-23:45:04.630 b103 Delete type=0 #16
+2024/07/24-23:45:04.630 b103 Delete type=0 #3
+2024/07/24-23:45:04.630 b103 Delete type=2 #14
+2024/07/24-23:45:04.630 b103 Delete type=2 #17
+2024/07/24-23:45:04.630 b103 Delete type=2 #11
+2024/07/24-23:45:04.630 b103 Delete type=2 #8
+2024/07/24-23:45:04.630 b103 Delete type=2 #21
+2024/07/24-23:45:04.642 b103 Delete type=2 #37
+2024/07/24-23:45:04.644 b103 Delete type=2 #27
+2024/07/24-23:45:04.644 b103 Delete type=2 #24
+2024/07/24-23:45:04.644 b103 Delete type=2 #30
+2024/07/24-23:45:04.644 b103 Delete type=0 #32
+2024/07/24-23:45:04.644 b103 Delete type=0 #26
+2024/07/24-23:45:04.644 b103 Delete type=0 #19
+2024/07/24-23:45:04.644 b103 Delete type=0 #23
